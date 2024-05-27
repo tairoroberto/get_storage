@@ -8,10 +8,7 @@ import 'value.dart';
 
 /// Instantiate GetStorage to access storage driver apis
 class GetStorage {
-  factory GetStorage(
-      [String container = 'GetStorage',
-      String? path,
-      Map<String, dynamic>? initialData]) {
+  factory GetStorage([String container = 'GetStorage', String? path, Map<String, dynamic>? initialData]) {
     if (_sync.containsKey(container)) {
       return _sync[container]!;
     } else {
@@ -21,8 +18,7 @@ class GetStorage {
     }
   }
 
-  GetStorage._internal(String key,
-      [String? path, Map<String, dynamic>? initialData]) {
+  GetStorage._internal(String key, [String? path, Map<String, dynamic>? initialData]) {
     _concrete = StorageImpl(key, path);
     _initialData = initialData;
 
@@ -155,7 +151,7 @@ class GetStorage {
   GetQueue queue = GetQueue();
 
   /// listenable of container
-  ValueStorage<Map<String, dynamic>> get listenable => _concrete.subject;
+  ValueStorage<Map<String, dynamic>?> get listenable => _concrete.subject;
 
   /// Start the storage drive. Important: use await before calling this api, or side effects will happen.
   late Future<bool> initStorage;
